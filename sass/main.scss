@@ -1,0 +1,850 @@
+@import './colors';
+@import './animation';
+@import './mixins';
+@import './components';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: $bg-color;
+	font-size: 1.6rem;
+}
+
+h2 {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.underline {
+	margin: 0 auto 40px;
+	width: 60px;
+	height: 4px;
+	background-color: $main-color;
+}
+
+.text {
+	color: $main-color;
+}
+
+.shadow-bg {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+// BURGER BTN
+.burger-btn {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	padding: 1em;
+	background: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+	z-index: 1000;
+
+	&:focus {
+		outline: none;
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		border-radius: 8px;
+	}
+
+	&:hover {
+		.burger-btn__bars::after,
+		.burger-btn__bars::before {
+			width: 100%;
+		}
+	}
+	&__box {
+		position: relative;
+		width: 40px;
+		height: 30px;
+	}
+	&__bars,
+	&__bars::after,
+	&__bars::before {
+		@include burgerBtn;
+	}
+	&__bars {
+		width: 100%;
+		&::after {
+			top: 13px;
+			width: 60%;
+		}
+		&::before {
+			top: 27px;
+			width: 30%;
+			transition-delay: 0.1s;
+		}
+	}
+}
+// NAWIGACJA
+nav {
+	font-size: 2rem;
+	transition: background-color 0.6s;
+	z-index: 1;
+
+	a {
+		color: $white;
+		cursor: pointer;
+	}
+	a:hover {
+		color: $main-color;
+	}
+
+	.navbar-brand {
+		font-weight: bold;
+		font-size: 3rem;
+		color: $main-color;
+	}
+
+	.active {
+		color: $main-color;
+	}
+}
+
+// HEADER
+.header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 2em;
+	height: 75vh;
+	text-align: center;
+	color: $white;
+	@include heroImages('../img/mainphoto.jpg');
+	background-attachment: scroll;
+
+	&__heading {
+		font-family: 'Dancing Script', cursive;
+		font-size: 4.8rem;
+		font-weight: 300;
+	}
+	&__text {
+		font-size: 1.4rem;
+	}
+	&__btn {
+		margin-top: 2em;
+		padding: 0.8em 1.6em;
+		font-size: 1.4rem;
+		background: $white;
+		border: none;
+		border-radius: 8px;
+		color: $dark;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+
+		&::before {
+			background-color: $main-color;
+		}
+	}
+}
+
+header {
+	color: $white;
+
+	h1 {
+		font-size: 35px;
+		text-transform: uppercase;
+	}
+
+	p {
+		font-size: 14px;
+	}
+}
+.hero-img {
+	position: relative;
+	height: 100vh;
+	background-image: url('../img/mainphoto.jpg');
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	z-index: 0;
+}
+
+.hero-shadow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: -10;
+}
+
+.hero-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	padding: 10px;
+	text-align: center;
+	z-index: 5;
+	h1 {
+		margin-bottom: 30px;
+		color: #fff;
+		font-style: 50px;
+		transition: transform color 2s;
+	}
+	h1:hover {
+		color: $main-color;
+		cursor: pointer;
+		transform: scale(1.05);
+	}
+	p {
+		font-size: 1.8rem;
+		padding: 16px 0 8px 16px;
+	}
+}
+
+.btn-outline-light {
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	display: block;
+	height: 60px;
+	width: 135px;
+}
+
+.fa-chevron-down {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 20px;
+	font-size: 30px;
+	color: $white;
+}
+
+// O NAS
+
+.aboutus {
+	i {
+		margin-top: 20px;
+		font-size: 30px;
+	}
+
+	.aboutus-card-title {
+		font-size: 18px;
+		text-transform: uppercase;
+	}
+
+	.aboutus-card-text {
+		font-size: 14px;
+	}
+
+	.aboutus-hover {
+		transition: color 0.2s;
+		cursor: pointer;
+	}
+
+	.aboutus-hover:hover {
+		color: $main-color;
+	}
+
+	img {
+		position: relative;
+		height: 15vh;
+		border-radius: 50%;
+		background-size: cover;
+		z-index: 0;
+		opacity: 0.9;
+		transition: transform 2s;
+	}
+	img:hover {
+		cursor: pointer;
+		transform: scale(1.05);
+	}
+}
+
+.aboutus-hero {
+	position: relative;
+	background-image: url('../img/about-hero-small.jpg');
+	background-position: center;
+	background-size: cover;
+	color: $light-gray;
+	z-index: 0;
+
+	.aboutus-shadow {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.7);
+		z-index: -5;
+	}
+
+	.aboutus-hero-item {
+		margin: 10px 0;
+
+		i {
+			font-size: 36px;
+		}
+
+		.aboutus-hero-title {
+			font-size: 24px;
+		}
+	}
+}
+.islands {
+	&__card {
+		position: relative;
+		margin: 1em 0;
+		height: 450px;
+		color: $pure-white;
+		text-align: center;
+		perspective: 1000px;
+
+		&:hover {
+			.islands__card-img {
+				transform: rotateY(-180deg);
+				opacity: 0;
+			}
+			.islands__card-info {
+				transform: rotateY(0);
+				opacity: 1;
+			}
+		}
+		&-img {
+			padding: 2em;
+			height: 100%;
+			border-radius: 8px;
+			background-size: cover;
+			transition: transform 1s, opacity 1s;
+
+			&--first {
+				background-image: $light-blue-gradient, url('../img/1.jpg');
+			}
+			&--second {
+				background-image: $blue-gradient, url('../img/2.jpg');
+			}
+			&--third {
+				background-image: $purple-gradient, url('../img/3.jpg');
+			}
+			&-title {
+				font-family: 'Dancing Script', cursive;
+				font-size: 2.8rem;
+			}
+			&-info {
+				position: absolute;
+				bottom: 30px;
+				right: 30px;
+				font-size: 1.8rem;
+				i {
+					margin-right: 0.3em;
+				}
+			}
+		}
+		&-info {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			background-image: $light-blue-gradient-solid;
+			border-radius: 8px;
+			opacity: 0;
+			transform: rotateY(180deg);
+			transition: transform 1s, opacity 1s;
+
+			&-title {
+				@include islandCardStyles;
+				top: 1.2em;
+				font-family: 'Dancing Script', cursive;
+				font-size: 2.8rem;
+			}
+			&-list {
+				margin: 0 auto;
+				width: 70%;
+				list-style: none;
+				&-item {
+					padding: 1em;
+					font-size: 1.4rem;
+					border-bottom: 1px solid $light-white;
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+			&-btn {
+				@include islandCardStyles;
+				bottom: 2em;
+				padding: 1em;
+				border-radius: 8px;
+				width: 80%;
+				border: none;
+				background-color: $green-color;
+				cursor: pointer;
+
+				&::before {
+					background-color: $green-color-hover;
+				}
+			}
+		}
+	}
+}
+
+// _____________________________________________wyszukiwarka_________________________
+
+.wrapper {
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		/* font-family: 'Dancing Script', cursive; */
+		font-family: 'Montserrat', sans-serif;
+		background-color: rgb(213, 182, 182);
+	}
+	.wrapper {
+		width: 800px;
+		background-color: rgb(213, 182, 182);
+		box-shadow: 0 0 10px rgb(12, 12, 12);
+		position: absolute;
+	}
+	.header {
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+		flex-direction: column;
+		position: relative;
+		height: 360px;
+		padding: 20px 40px;
+		font-family: 'Dancing Script', cursive;
+		background-image: url('../img/tropical-3550645_640.jpg');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		z-index: 0;
+	}
+	.shadow {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(168, 118, 154, 0.15);
+		z-index: -1;
+	}
+
+	.search {
+		padding: 10px 20px;
+		margin-bottom: 40px;
+		width: 100%;
+		font-size: 16px;
+		border-radius: 5px;
+		background-color: rgba(255, 255, 255, 0.85);
+	}
+	.drink-list {
+		padding: 20px 40px;
+		button {
+			border: none;
+			background-color: transparent;
+		}
+	}
+
+	h2 {
+		padding: 30px 0;
+	}
+	ul {
+		padding-bottom: 30px;
+		font-size: 23px;
+		list-style: none;
+	}
+	li {
+		padding: 8px 30px;
+		border-bottom: 1px solid rgb(226, 226, 226);
+	}
+	li:last-child {
+		border-bottom: 0;
+	}
+}
+
+.offers {
+	.offers-box {
+		position: relative;
+		margin: 1em 0;
+		height: 120px;
+		background-color: $white;
+		text-align: center;
+		perspective: 1000px;
+		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+		transition: transform 0.3s;
+
+		&:hover {
+			.offers-box-img {
+				transform: rotateY(-180deg);
+				opacity: 0;
+			}
+			.offers-box-info {
+				transform: rotateY(0);
+				opacity: 1;
+			}
+		}
+		&-img {
+			padding: 2em;
+			height: 100%;
+			border-radius: 8px;
+			background-size: cover;
+			transition: transform 1s, opacity 1s;
+
+			&--first {
+				background-image: $light-blue-gradient;
+			}
+			&--second {
+				background-image: $blue-gradient;
+			}
+			&--third {
+				background-image: $purple-gradient;
+			}
+			&-title {
+				font-family: 'Dancing Script', cursive;
+				font-size: 2.8rem;
+			}
+			&-info {
+				position: absolute;
+				bottom: 30px;
+				right: 30px;
+				font-size: 1.8rem;
+				i {
+					margin-right: 0.3em;
+				}
+			}
+		}
+		&-info {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			background-image: $light-blue-gradient-solid;
+			border-radius: 8px;
+			opacity: 0;
+			transform: rotateY(180deg);
+			transition: transform 1s, opacity 1s;
+
+			&-title {
+				@include islandCardStyles;
+				top: 1.2em;
+				font-family: 'Dancing Script', cursive;
+				font-size: 2.8rem;
+			}
+			&-list {
+				margin: 0 auto;
+				width: 70%;
+				list-style: none;
+				&-item {
+					padding: 1em;
+					font-size: 1.4rem;
+					border-bottom: 1px solid $light-white;
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+			&-btn {
+				@include islandCardStyles;
+				bottom: 2em;
+				padding: 1em;
+				border-radius: 8px;
+				width: 80%;
+				border: none;
+				background-color: $green-color;
+				cursor: pointer;
+
+				&::before {
+					background-color: $green-color-hover;
+				}
+			}
+		}
+	}
+}
+
+h3 {
+	color: $main-color;
+	text-transform: uppercase;
+}
+
+i {
+	padding: 0 5px;
+	font-size: 24px;
+}
+
+button {
+	padding: 10px 20px;
+	text-transform: uppercase;
+}
+
+.offers-box:hover {
+	transform: scale(1.05);
+}
+
+// _______________________________// REVIEWS_________________________________________________
+@media (max-width: 767px) {
+	.reviews.section-padding {
+		padding: 6em 0;
+	}
+}
+
+.reviews {
+	&__box {
+		position: relative;
+		margin: 2em;
+		padding: 2em;
+		border-radius: 8px;
+		box-shadow: 3px 3px 10px rgba(46, 46, 46, 0.18);
+		transition: transform 0.3s;
+
+		&:hover {
+			transform: scale(0.95);
+		}
+	}
+
+	&__box-img {
+		position: absolute;
+		top: 8%;
+		left: 75%;
+		transform: translate(-50%, -50%);
+
+		img {
+			width: 80px;
+			height: 80px;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+	}
+
+	&__box-quote {
+		margin-bottom: 1em;
+		font-size: 3rem;
+		color: $main-color;
+	}
+
+	&__box-text {
+		margin-bottom: 1em;
+		font-size: 1.4rem;
+		color: $dark;
+	}
+}
+
+// ________________________________// CONTACT_________________________________________
+
+.contact {
+	position: relative;
+	background-color: $bg-color;
+	overflow: hidden;
+
+	.white-block-left {
+		background-color: $dark;
+	}
+
+	&__form,
+	&__form-top {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__form-label {
+		margin-bottom: 0.5em;
+		text-transform: uppercase;
+	}
+
+	&__form-input {
+		@include contactForm;
+	}
+
+	&__form-textarea {
+		@include contactForm;
+
+		max-width: 100%;
+		min-width: 100%;
+		width: 100%;
+		min-height: 150px;
+	}
+
+	&__form-btn {
+		align-self: flex-end;
+		padding: 1em;
+		width: 100%;
+		max-width: 300px;
+		color: $white;
+		border: none;
+		border-radius: 8px;
+		background-color: $main-color;
+		cursor: pointer;
+
+		&::before {
+			background-color: $main-color;
+		}
+	}
+	p {
+		text-align: center;
+		color: $main-color;
+	}
+}
+
+// FOOTER
+
+.footer {
+	background-color: $dark;
+	p {
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	&__box {
+		font-size: 1.1rem;
+	}
+
+	&__box-title {
+		margin-bottom: 1em;
+		font-size: 1.8rem;
+		text-transform: uppercase;
+		text-align: center;
+		justify-content: center;
+	}
+
+	&__box-link {
+		padding: 0 0.3em;
+		font-size: 3.6rem;
+		color: $white;
+		text-decoration: none;
+		transition: color 0.3s;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:hover {
+			color: $white;
+		}
+	}
+
+	&__bottom-text {
+		padding: 2em;
+		text-align: center;
+	}
+	.wrapper {
+		padding: 6em 2em 2em;
+	}
+}
+h6 {
+	color: $main-color;
+}
+@media (min-width: 768px) {
+	.footer {
+		&__boxes {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&__box-desktop {
+			display: block;
+		}
+
+		&__box {
+			margin: 0 2em;
+			width: 25%;
+
+			&:first-child {
+				width: 50%;
+			}
+		}
+
+		&__box-title {
+			font-size: 2.4rem;
+		}
+
+		&__box-list {
+			list-style: none;
+		}
+
+		&__box-list-item {
+			margin-bottom: 1em;
+
+			a {
+				color: $bg-color;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.offers-page {
+	i {
+		margin-top: 20px;
+		font-size: 30px;
+	}
+	.offers-page-card-title {
+		font-size: 18px;
+		text-transform: uppercase;
+	}
+	.offers-page-card-text {
+		font-size: 14px;
+	}
+	.offers-page-hover {
+		transition: color 0.2s;
+		cursor: pointer;
+	}
+	.offers-page-hover:hover {
+		color: $main-color;
+	}
+	img {
+		position: relative;
+		height: 15vh;
+		border-radius: 50%;
+		background-size: cover;
+		z-index: 0;
+		opacity: 0.9;
+		transition: transform 2s;
+	}
+	img:hover {
+		cursor: pointer;
+		transform: scale(1.05);
+	}
+}
+.offers-page-hero {
+	position: relative;
+	background-image: url('../img/about-hero-small.jpg');
+	background-position: center;
+	background-size: cover;
+	color: $light-gray;
+	z-index: 0;
+
+	.offers-page-shadow {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.7);
+		z-index: -5;
+	}
+
+	.offers-page-hero-item {
+		margin: 10px 0;
+
+		i {
+			font-size: 36px;
+		}
+
+		.offers-page-hero-title {
+			font-size: 24px;
+		}
+	}
+}
